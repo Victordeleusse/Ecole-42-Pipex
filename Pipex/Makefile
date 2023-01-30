@@ -1,4 +1,5 @@
-SRCS = Mandatory/pipex.c Mandatory/childs.c Mandatory/error.c Mandatory/free.c
+SRCS =	Bonus/childs.c Bonus/free.c Bonus/init_files.c Bonus/pipes.c Bonus/pipex_bonus.c \
+		Bonus/error.c 
 		
 OBJS = ${SRCS:.c=.o}
 DEPS = ${SRCS:.c=.d}
@@ -27,7 +28,7 @@ run: ${OBJS}
 		@ $(CC) -o ${EXEC} $(CFLAGS) ${OBJS} ${LIBFT_PATH}
 
 clean:	
-		rm -f ${OBJS} ${DEPS} ${OBJS_BONUS} ${DEPS_BONUS}
+		rm -f ${OBJS} ${DEPS} ${OBJS_BONUS} ${DEPS_BONUS} ${EXEC}
 		$(MAKE) -C Libft/ clean
 		rm -f a.out
 		clear

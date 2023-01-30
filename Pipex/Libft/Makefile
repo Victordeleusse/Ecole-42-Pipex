@@ -6,7 +6,7 @@
 #    By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 13:42:36 by vde-leus          #+#    #+#              #
-#    Updated: 2022/11/28 15:27:51 by vde-leus         ###   ########.fr        #
+#    Updated: 2023/01/28 14:47:49 by vde-leus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS += ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c 
 				ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
 				ft_lstadd_back.c ft_lstadd_front.c \
 				ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
-				ft_lstmap.c ft_lstnew.c ft_lstsize.c 
+				ft_lstmap.c ft_lstnew.c ft_lstsize.c ft_strcmp.c
 
 ### SRCS Get_next_line
 
