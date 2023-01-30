@@ -1,5 +1,5 @@
-SRCS =	Bonus/childs.c Bonus/free.c Bonus/init_files.c Bonus/pipes.c Bonus/pipex_bonus.c \
-		Bonus/error.c 
+SRCS =	Finale/child.c Finale/free.c Finale/get_files.c Finale/pipe.c Finale/pipex.c \
+		Finale/msg.c 
 		
 OBJS = ${SRCS:.c=.o}
 DEPS = ${SRCS:.c=.d}

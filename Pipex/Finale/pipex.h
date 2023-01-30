@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:20:15 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/30 12:07:41 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:36:35 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@
 # define ERR_INFILE "Infile : Invalid folder.\n"
 # define ERR_OUTFILE "Outfile : Invalid folder.\n"
 # define ERR_HEREDOC "Here_doc : an error as occured.\n"
-# define ERR_HEREDOC_READ "Here_doc : an error as occured when getting information.\n"
+# define ERR_HEREDOC_READ "Here_doc : an error as occured \
+when getting information.\n"
+# define ERR_CMD "command "
 # define ERR_PIPE "pipe : an error as occured.\n"
-
 
 typedef struct s_pipex
 {
@@ -88,6 +89,5 @@ void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp);
 
 int		ft_is_here_doc(t_pipex *pipex, int argc, char **argv);
 char	*ft_get_env_path(char **envp);
-
 
 #endif

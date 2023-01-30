@@ -6,20 +6,37 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:37:54 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/29 18:40:10 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:03:18 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void	ft_initialise_recep_file_from_here_doc(int *recep_file)
+{
+	*recep_file = open("temporary file", O_CREAT | O_WRONLY | O_TRUNC, 0000664);
+	if (*recep_file < 0)
+		ft_msg_err(ERR_HEREDOC);
+}
+
+void	ft_infile_from_here_doc(t_pipex *pipex, int *recep_file)
+{
+	close(*recep_file);
+	pipex->infile = open("temporary file", O_RDONLY, 0000664);
+	if (pipex->infile < 0)
+	{
+		unlink("temporary file");
+		ft_msg_err(ERR_HEREDOC);
+	}
+}
+
 void	ft_here_doc_treat(t_pipex *pipex, char *limiter)
 {
 	int		recep_file;
+	int		len;
 	char	*temp;
 
-	recep_file = open("temporary file", O_CREAT | O_WRONLY | O_TRUNC, 0000664);
-	if (recep_file < 0)
-		ft_msg_err(ERR_HEREDOC);
+	ft_initialise_recep_file_from_here_doc(&recep_file);
 	while (1)
 	{
 		write(1, "heredoc> ", 9);
@@ -30,28 +47,21 @@ void	ft_here_doc_treat(t_pipex *pipex, char *limiter)
 		temp[len - 1] = '\0';
 		if (ft_strcmp(temp, limiter) == 0)
 		{	
-			free(temp)
+			free(temp);
 			break ;
 		}
 		write(recep_file, temp, ft_strlen(temp));
 		write(recep_file, "\n", 1);
 		free (temp);
 	}
-	close(recep_file);
-	pipex->infile = open("temporary file"; O_RDONLY, 0000664);
-	if (pipex->infile < 0)
-	{
-		unlink("temporary file");
-		ft_msg_err(ERR_HEREDOC);
-	}
-	
+	ft_infile_from_here_doc(pipex, &recep_file);
 }
 
 void	ft_get_infile(t_pipex *pipex, char **argv)
 {
 	if (pipex->is_here_doc == 0)
 	{
-		pipex->infile = open(argv[2], O_RDONLY);
+		pipex->infile = open(argv[1], O_RDONLY);
 		if (pipex->infile < 0)
 			ft_msg_err(ERR_INFILE);
 	}
@@ -62,9 +72,11 @@ void	ft_get_infile(t_pipex *pipex, char **argv)
 void	ft_get_outfile(t_pipex *pipex, char **argv, int argc)
 {
 	if (pipex->is_here_doc == 0)
-		pipex->outfile = open(argv[argc -1], O_CREATE | O_RDWR | O_TRUNC, 0000664);
+		pipex->outfile = open(argv[argc -1], \
+			O_CREAT | O_RDWR | O_TRUNC, 0000664);
 	else if (pipex->is_here_doc == 1)
-		pipex->outfile = open(argv[argc -1], O_WRONLY | O_CREATE | O_APPEND, 0000664);
+		pipex->outfile = open(argv[argc -1], \
+			O_WRONLY | O_CREAT | O_APPEND, 0000664);
 	if (pipex->outfile < 0)
 		ft_msg_err(ERR_OUTFILE);
 }

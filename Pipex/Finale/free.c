@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:16:05 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/30 12:01:38 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:38:56 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_free_pipes(t_pipex *pipex)
 {
-	free(pipex->infile);
-	free(pipex->outfile);
+	close(pipex->infile);
+	close(pipex->outfile);
 	if (pipex->is_here_doc)
 		unlink("temporary_file");
 	free(pipex->pipefd);
-	ft_msg_err(ERR_PIPE);
+	exit(1);
 }
 
 void	ft_free_parent_prog(t_pipex *pipex)
@@ -31,12 +31,12 @@ void	ft_free_parent_prog(t_pipex *pipex)
 	close(pipex->outfile);
 	if (pipex->is_here_doc == 1)
 		unlink("temporary_file");
-	while (pipex->env_args[i])
+	while (pipex->command_paths[i])
 	{	
-		free(pipex->env_args[i]);
+		free(pipex->command_paths[i]);
 		i++;
 	}
-	free(pipex->env_args);
+	free(pipex->command_paths);
 	free(pipex->pipefd);
 }
 
@@ -45,13 +45,13 @@ void	ft_free_child_prog(t_pipex *pipex)
 	int	i;
 
 	i = 0;
-	while (pipex->command_args[i])
+	if (pipex->command_args[0] != 0)
 	{
-		free(pipex->command_args[i]);
-		i++;		
+		while (pipex->command_args[i])
+		{
+			free(pipex->command_args[i]);
+			i++;
+		}
 	}
 	free(pipex->command_args);
-	free(pipex->command_path);
-	ft_msg_err(ERR_PIPE);
 }
-
