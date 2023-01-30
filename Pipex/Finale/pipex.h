@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:20:15 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/30 17:36:35 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:01:19 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 # define ERR_HEREDOC "Here_doc : an error as occured.\n"
 # define ERR_HEREDOC_READ "Here_doc : an error as occured \
 when getting information.\n"
-# define ERR_CMD "command "
+# define ERR_CMD "command error : "
+# define ERR_ENVP "Environment error.\n"
 # define ERR_PIPE "pipe : an error as occured.\n"
 
 typedef struct s_pipex
@@ -58,6 +59,7 @@ typedef struct s_pipex
 //////////////////// MSG.C ////////////////////
 
 void	ft_msg(char *message);
+void	ft_msg_err_command(char *message);
 void	ft_msg_err(char *message);
 
 //////////////////// GET_FILES.C ////////////////////

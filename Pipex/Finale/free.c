@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:16:05 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/30 17:38:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:12:09 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_free_pipes(t_pipex *pipex)
 	if (pipex->is_here_doc)
 		unlink("temporary_file");
 	free(pipex->pipefd);
+	ft_msg(ERR_ENVP);
 	exit(1);
 }
 
@@ -54,4 +55,7 @@ void	ft_free_child_prog(t_pipex *pipex)
 		}
 	}
 	free(pipex->command_args);
+	if (pipex->command)
+		free(pipex->command);
+	ft_free_parent_prog(pipex);
 }
