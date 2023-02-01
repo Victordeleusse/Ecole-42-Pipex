@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:37:54 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/30 18:03:18 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:02:53 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,7 @@ void	ft_here_doc_treat(t_pipex *pipex, char *limiter)
 void	ft_get_infile(t_pipex *pipex, char **argv)
 {
 	if (pipex->is_here_doc == 0)
-	{
 		pipex->infile = open(argv[1], O_RDONLY);
-		if (pipex->infile < 0)
-			ft_msg_err(ERR_INFILE);
-	}
 	else
 		ft_here_doc_treat(pipex, argv[2]);
 }

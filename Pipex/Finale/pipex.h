@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:20:15 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/30 20:01:19 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:24:35 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,13 @@
 
 # include "../Libft/libft.h"
 
-/* write, read, close, access, pipe, dup2, execve, fork */
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/uio.h>
-/* malloc, free, exit */
 # include <stdlib.h>
-/* open, unlink */
 # include <fcntl.h>
-/* waitpid, wait */
 # include <sys/wait.h>
-/* strerror */
 # include <string.h>
-/* perror*/
 # include <stdio.h>
 
 # define ERR_INPUT "Invalid number of arguments.\n"
@@ -59,6 +53,7 @@ typedef struct s_pipex
 //////////////////// MSG.C ////////////////////
 
 void	ft_msg(char *message);
+void	ft_msg_infile(char *message);
 void	ft_msg_err_command(char *message);
 void	ft_msg_err(char *message);
 

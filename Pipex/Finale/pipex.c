@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:18:10 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/01 10:37:05 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:03:18 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_is_here_doc(t_pipex *pipex, int argc, char **argv)
 {
 	if (argc < 4)
-		return(0);
+		return (0);
 	if (ft_strcmp(argv[1], "here_doc") == 0)
 		pipex->is_here_doc = 1;
 	else
