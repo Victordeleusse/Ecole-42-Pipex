@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/01 19:43:11 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/01 20:12:08 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ char	*ft_get_command_for_the_pipe(t_pipex *pipex)
 void	ft_command_issue(t_pipex *pipex)
 {
 	ft_msg_err_command(pipex->command_args[0]);
-	close(0);
-	close(1);
-	close(2);
 	ft_free_child_prog(pipex);
 	exit(1);
 }
@@ -51,9 +48,6 @@ void	ft_infile_issue(t_pipex *pipex, char **argv)
 	ft_msg_infile("no such file or directory : ");
 	ft_msg(argv[1]);
 	ft_close_pipes(pipex);
-	close(0);
-	close(1);
-	close(2);
 	ft_free_parent_prog(pipex);
 	exit(1);
 }
