@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:28:03 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/29 17:09:40 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/01 13:10:46 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,58 +14,52 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
-void	ft_son(pid_t pid, int *param, char *test)
+void	ft_son1(int *param, int i)
 {
-	printf("FILS : Je suis le fils, de PID interne %d\n", pid);
-	*param = *param * 2;
-	test[0] = 'O';
-	test[1] = 'K';
-	test[2] = '\0';
-	// exit(EXIT_SUCCESS);
-
+	pid_t	pid_s;
+	
+	pid_s = fork();
+	if (pid_s == -1)
+		return ;
+	printf("FORK REUSSI !\n");
+	if (pid_s == 0)
+	{
+		printf("FILS : Je suis le fils %d, de PID interne %d || ", i + 1, pid_s);
+		*param = *param * 2;
+		printf("VALEUR -> %d\n\n", *param);
+		exit(EXIT_SUCCESS);
+	}
+	if (pid_s > 0)
+	{
+		wait(NULL);
+		printf("FATHER : Je suis le pere , mon PID herite de mon fils est %d\n", pid_s);
+	}
 }
 
-void	ft_father(pid_t pid, int *param, char *test)
+void	ft_father(int *param)
 {
-	printf("FATHER : Je suis le pere , mon PID herite de mon fils est %d\n", pid);
+	printf("FATHER : Je suis le pere\n");
 	*param = *param - 21;
-	free(test);
-	wait(NULL);
 	// exit(EXIT_SUCCESS);
-}
-
-void	ft_cut(int crash)
-{
-	if (crash == 0)
-		exit(EXIT_FAILURE);
 }
 
 int	main(void)
 {
-	pid_t	pid;
-	int		*param_mem;
-	char	*test;
+	int		param_mem;
+	int		i;
 
-	test = (char *)malloc(sizeof(char) * 3);
-	pid = fork();
 	param_mem = 42;
-	if (pid == -1)
-		return(EXIT_FAILURE);
-	printf("FORK REUSSI !\n");
-	if (pid == 0)
-	{
-		printf("adresse : %p\n", &param_mem);
-		ft_son(pid, &param_mem, test);
-		printf("FILS : la valeur du parametre : %d\n", param_mem);
+	i = 0;
+	while (i < 2)
+	{	
+		ft_son1(&param_mem, i);
+		i++;
 	}
-	if (pid > 0)
-	{
-		printf("adresse : %p\n", &param_mem);
-		ft_father(pid, &param_mem, test);
-		printf("PERE : NON ! la valeur du parametre : %d\n", param_mem);
-	}
+	// wait(NULL);
+	ft_father(&param_mem);
+	printf("PERE : NON ! la valeur du parametre : %d\n", param_mem);
 	printf("La valeur FINALE du parametre : %d\n", param_mem);
-	printf("char test : %s\n", test);
 	return(0);
 }
