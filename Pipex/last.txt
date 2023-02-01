@@ -1,0 +1,8 @@
+total 44
+drwxr-xr-x 4 vde-leus 2022_paris  4096 Feb  1 09:13 .
+drwxr-xr-x 6 vde-leus 2022_paris  4096 Feb  1 09:11 ..
+drwxr-xr-x 2 vde-leus 2022_paris  4096 Feb  1 09:12 Finale
+-rw-r--r-- 1 vde-leus 2022_paris     0 Feb  1 09:14 last.txt
+drwxr-xr-x 2 vde-leus 2022_paris  4096 Feb  1 09:12 Libft
+-rw-r--r-- 1 vde-leus 2022_paris   751 Feb  1 09:11 Makefile
+-rwxr-xr-x 1 vde-leus 2022_paris 23120 Feb  1 09:12 pipex

@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/30 21:00:54 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/01 09:14:02 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,11 @@ void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp)
 	if (pipex->pid == 0)
 	{
 		if (pipex->index == 0)
-		{	
-			fprintf(stderr, "First child\n");
 			ft_first_child(pipex);
-		}
 		else if (pipex->index < pipex->nb_cmds - 1)
-		{	
-			fprintf(stderr, "indice %d -> ->", pipex->index);
 			ft_middle_child(pipex);
-		}
 		else
-		{	
-			fprintf(stderr, "Last child\n");
 			ft_last_child(pipex);
-		}
 		ft_close_pipes(pipex);
 		pipex->command_args = ft_split(argv[2 + pipex->index + \
 										pipex->is_here_doc], ' ');
