@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:18:10 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/01 19:03:18 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/06 10:21:55 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ int	ft_is_here_doc(t_pipex *pipex, int argc, char **argv)
 
 char	*ft_get_env_path(char **envp)
 {
-	while (*envp && ft_strncmp("PATH", *envp, 4) != 0)
-		*envp++;
-	return (*envp + 5);
+	int	i;
+
+	i = 0;
+	while (envp[i] && ft_strncmp("PATH", envp[i], 4) != 0)
+		i++;
+	return (envp[i] + 5);
 }
 
 void	ft_finish_parent_prog(t_pipex *pipex)

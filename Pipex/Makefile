@@ -18,14 +18,13 @@ CFLAGS += -Wextra
 # CFLAGS += -g 
 
 %.o: %.c 
-			${CC} -I. ${LIBFT_PATH} -MMD -c $< -o ${<:.c=.o}
+			${CC} -MMD -c $< -o ${<:.c=.o}
 
 all: run
 
 run: ${OBJS}
 		$(MAKE) -C Libft/ all
-		clear
-		@ $(CC) -o ${EXEC} $(CFLAGS) ${OBJS} ${LIBFT_PATH}
+		@ $(CC) -o ${EXEC} $(CFLAGS) ${OBJS} ${LIBFT_PATH} 
 
 clean:	
 		rm -f ${OBJS} ${DEPS} ${OBJS_BONUS} ${DEPS_BONUS} ${EXEC}
