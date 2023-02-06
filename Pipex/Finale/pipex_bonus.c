@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 17:18:10 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/06 13:36:45 by vde-leus         ###   ########.fr       */
+/*   Created: 2023/02/06 13:19:13 by vde-leus          #+#    #+#             */
+/*   Updated: 2023/02/06 13:52:30 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
 
-	if (ft_is_here_doc(&pipex, argc, argv) == 0 || argc != 5)
+	if (ft_is_here_doc(&pipex, argc, argv) == 0)
 		return (ft_msg(ERR_INPUT), 0);
 	pipex.index = 0;
 	pipex.nb_cmds = argc - 3 - pipex.is_here_doc;
