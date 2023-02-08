@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:20:15 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/08 11:23:38 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:53:37 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define ERR_HEREDOC_READ "Here_doc : an error as occured \
 when getting information.\n"
 # define ERR_CMD "command error : "
+# define ERR_CALLOC "calloc error : "
 # define ERR_ENVP "Environment error.\n"
 # define ERR_PIPE "pipe : an error as occured.\n"
 
@@ -48,6 +49,7 @@ typedef struct s_pipex
 	char	*command;
 	int		index;
 	pid_t	pid;
+	pid_t	*tab_pid;
 }t_pipex;
 
 //////////////////// MSG.C ////////////////////
@@ -80,11 +82,14 @@ void	ft_close_pipes(t_pipex *pipex);
 //////////////////// CHILD.C ////////////////////
 
 char	*ft_get_command_for_the_pipe(t_pipex *pipex);
-void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp);
+void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp, \
+	pid_t *tab);
 
 //////////////////// PIPEX.C ////////////////////
 
 int		ft_is_here_doc(t_pipex *pipex, int argc, char **argv);
 char	*ft_get_env_path(char **envp);
+void	ft_init_pipex(t_pipex *pipex, int argc, char **argv);
+void	ft_init_pipex_bonus(t_pipex *pipex, int argc, char **argv, char **envp);
 
 #endif

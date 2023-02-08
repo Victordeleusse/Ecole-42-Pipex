@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/08 11:29:43 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:56:30 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ void	ft_infile_issue(t_pipex *pipex, char **argv)
 	exit(1);
 }
 
-void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp)
-{
+void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp, \
+	pid_t *tab_pid)
+{	
 	pipex->pid = fork();
 	if (pipex->pid == 0)
 	{
@@ -75,4 +76,6 @@ void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp)
 			ft_command_issue(pipex);
 		execve(pipex->command, pipex->command_args, envp);
 	}
+	else
+		*tab_pid = pipex->pid;
 }
