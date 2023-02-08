@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:19:13 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/08 14:57:36 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:10:49 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv, char **envp)
 	if (pipex.is_here_doc == 0)
 		waitpid(pipex.tab_pid[argc - 4], &status, 0);
 	else
-		waitpid(pipex.tab_pid[argc - 4], &status, 0);
+		waitpid(pipex.tab_pid[argc - 5], &status, 0);
 	waitpid(-1, NULL, 0);
 	ft_free_parent_prog(&pipex);
 	if (!status)

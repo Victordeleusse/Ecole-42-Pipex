@@ -24,12 +24,10 @@ LIBFT_PATH = -I Libft -L Libft -lft
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-#		rm -rf Finale/pipex_bonus.o Finale/pipex_bonus.d
 		$(MAKE) -C Libft/ all
 		@ $(CC) -o ${NAME} $(CFLAGS) ${OBJS} ${LIBFT_PATH} 
 
 bonus: ${OBJS_BONUS}
-#		rm -rf Finale/pipex.o Finale/pipex.d
 		$(MAKE) -C Libft/ all
 		@ $(CC) -o ${NAME} $(CFLAGS) ${OBJS_BONUS} ${LIBFT_PATH}
 
