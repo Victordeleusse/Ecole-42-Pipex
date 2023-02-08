@@ -6,12 +6,11 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:18:10 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/08 11:23:30 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:43:53 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <errno.h>
 
 int	ft_is_here_doc(t_pipex *pipex, int argc, char **argv)
 {
