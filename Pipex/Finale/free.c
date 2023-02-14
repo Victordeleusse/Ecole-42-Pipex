@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:16:05 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/14 11:35:06 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:29:45 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ void	ft_free_child_prog(t_pipex *pipex)
 	int	i;
 
 	i = 0;
-	if (pipex->command_args[0] != 0)
+	if (pipex->command_args[0])
 	{
 		while (pipex->command_args[i])
 		{
 			free(pipex->command_args[i]);
 			i++;
 		}
-		free(pipex->command_args);
 	}
+	free(pipex->command_args);
 	if (pipex->command)
 		free(pipex->command);
 	ft_free_parent_prog(pipex);
