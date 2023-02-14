@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/08 13:56:30 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:55:45 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	*ft_get_command_for_the_pipe(t_pipex *pipex)
 
 void	ft_command_issue(t_pipex *pipex)
 {
-	ft_msg_err_command(pipex->command_args[0]);
+	if (pipex->command_args[0][0] && pipex->command_args[0][0] != ' ')
+		ft_msg_err_command(pipex->command_args[0]);
 	ft_free_child_prog(pipex);
 	exit(1);
 }

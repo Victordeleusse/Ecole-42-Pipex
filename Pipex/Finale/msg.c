@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:25:25 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/01 19:23:09 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:51:12 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_msg_err_command(char *message)
 	write(2, ERR_CMD, ft_strlen(ERR_CMD));
 	if (message && message != 0)
 		write(2, message, ft_strlen(message));
-	write(2, ".\n", 2);
+	write(2, "\n", 1);
 }
 
 void	ft_msg_err(char *message)
