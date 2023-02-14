@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:19:13 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/08 15:10:49 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:32:14 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_init_pipex_bonus(t_pipex *pipex, int argc, char **argv, char **envp)
 {
 	pipex->index = 0;
 	pipex->nb_cmds = argc - 3;
+	if (pipex->is_here_doc)
+		pipex->nb_cmds = argc - 4;
 	pipex->nb_pipes = pipex->nb_cmds - 1;
 	ft_get_infile(pipex, argv);
 	ft_get_outfile(pipex, argv, argc);
