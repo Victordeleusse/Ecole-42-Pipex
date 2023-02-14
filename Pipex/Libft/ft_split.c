@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:46:39 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/11/07 14:15:00 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:00:53 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	j;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	j = 0;
 	taille = ft_nbr_mots(s, c);

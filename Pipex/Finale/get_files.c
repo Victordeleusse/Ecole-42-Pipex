@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:37:54 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/01 19:02:53 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:08:11 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,8 @@ void	ft_get_outfile(t_pipex *pipex, char **argv, int argc)
 		pipex->outfile = open(argv[argc -1], \
 			O_WRONLY | O_CREAT | O_APPEND, 0000664);
 	if (pipex->outfile < 0)
+	{	
+		close(pipex->infile);
 		ft_msg_err(ERR_OUTFILE);
+	}
 }

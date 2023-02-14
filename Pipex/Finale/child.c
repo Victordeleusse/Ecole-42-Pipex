@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/14 14:31:14 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:34:53 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_get_command_for_the_pipe(t_pipex *pipex)
 
 	if (!pipex->command_args || pipex->command_args[0] == 0)
 		return (NULL);
-	if (access(pipex->command_args[0], 1) == 0)
+	if (access(pipex->command_args[0], 1) == 0 && !pipex->command_args[1])
 		return (pipex->command_args[0]);
 	i = 0;
 	while (pipex->command_paths[i])
