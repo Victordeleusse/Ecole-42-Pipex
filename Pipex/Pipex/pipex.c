@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:18:10 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/08 14:48:39 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:55:52 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*ft_get_env_path(char **envp)
 	int	i;
 
 	i = 0;
+	if (!envp || !envp[i])
+		return (NULL);
 	while (envp[i] && ft_strncmp("PATH", envp[i], 4) != 0)
 		i++;
 	return (envp[i] + 5);
