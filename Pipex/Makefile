@@ -11,19 +11,40 @@ SRCS =	child.c free.c get_files.c pipe.c pipex.c \
 SRCS_BONUS =	child.c free.c get_files.c pipe.c pipex_bonus.c \
 		msg.c 
 		
-OBJS = ${SRCS:.c=.o}
-DEPS = ${SRCS:.c=.d}
+OBJS_PATH = objs
 
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
-DEPS_BONUS = ${SRCS_BONUS:.c=.d}
+OBJS_PATH_BONUS = objs_bonus
+
+SRCS_PATH = srcs/
+
+HEADER_PATH += ${SRCS_PATH}includes/
+HEADER_PATH_LIBFT += Libft/
+
+HEADER = pipex.h
+
+vpath %.c ${SRCS_PATH}
+
+vpath %.h ${HEADER_PATH}
+
+all: ${NAME}
+
+OBJS = ${patsubst %.c, ${OBJS_PATH}/%.o, ${SRCS}}
+OBJS_BONUS = ${patsubst %.c, ${OBJS_PATH_BONUS}/%.o, ${SRCS_BONUS}}
+
+
+${OBJS}: ${OBJS_PATH}/%.o: %.c Makefile ${HEADER}
+		mkdir -p ${OBJS_PATH}
+		${CC} ${CFLAGS} -g -c $< -o $@ -I ${HEADER_PATH} -I ${HEADER_PATH_LIBFT} 
+
+${OBJS_BONUS}: ${OBJS_PATH_BONUS}/%.o: %.c Makefile ${HEADER}
+		mkdir -p ${OBJS_PATH_BONUS}
+		${CC} ${CFLAGS} -g -c $< -o $@ -I ${HEADER_PATH} -I ${HEADER_PATH_LIBFT}
 
 LIBFT_PATH = -I Libft -L Libft -lft
 
 # CFLAGS += -fsanitize=address,undefined -g2
 # CFLAGS += -valgrind
-CFLAGS += -g 
-
-all: ${NAME}
+# CFLAGS += -g 
 
 ${NAME}: ${OBJS} 
 		$(MAKE) -C Libft/ all
@@ -35,11 +56,8 @@ ${NAME_BONUS}: ${OBJS_BONUS}
 		$(MAKE) -C Libft/ all
 		$(CC) -o ${NAME_BONUS} $(CFLAGS) ${OBJS_BONUS} ${LIBFT_PATH}
 
-%.o: %.c
-			${CC} -g -MMD -o $@ -c $<
-
 clean:	
-		rm -f ${OBJS} ${DEPS} ${OBJS_BONUS} ${DEPS_BONUS}
+		rm -rf $(OBJS_PATH) $(OBJS_PATH_BONUS)
 		$(MAKE) -C Libft/ clean
 		clear
 
@@ -47,8 +65,6 @@ fclean:	clean
 		$(MAKE) -C Libft/ fclean
 		rm -f ${NAME} ${NAME_BONUS}
 		clear
-
--include ${DEPS} ${DEPS_BONUS} 
 
 re:	fclean all
 
