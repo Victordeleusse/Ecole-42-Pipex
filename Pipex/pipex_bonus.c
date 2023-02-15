@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:19:13 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/14 16:56:24 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:30:21 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ char	*ft_get_env_path(char **envp)
 		return (NULL);
 	while (envp[i] && ft_strncmp("PATH", envp[i], 4) != 0)
 		i++;
-	return (envp[i] + 5);
+	if (envp[i] && ft_strncmp("PATH", envp[i], 4) == 0)
+		return (envp[i] + 5);
+	else
+		return (NULL);
 }
 
 void	ft_init_pipex_bonus(t_pipex *pipex, int argc, char **argv, char **envp)

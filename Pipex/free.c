@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:16:05 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 17:34:46 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:29:37 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_free_pipes(t_pipex *pipex)
 	if (pipex->is_here_doc)
 		unlink("temporary file");
 	free(pipex->pipefd);
+	if (pipex->tab_pid)
+		free(pipex->tab_pid);
 	ft_msg(ERR_ENVP);
 	exit(1);
 }
