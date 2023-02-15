@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:25:25 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 12:55:35 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:10:23 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_msg_err_command(char *message)
 	if (message && message != 0)
 		write(2, message, ft_strlen(message));
 	write(2, "\n", 1);
+	// perror(message);
 }
 
 void	ft_msg_err(char *message)
