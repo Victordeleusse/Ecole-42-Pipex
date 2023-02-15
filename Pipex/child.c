@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 16:45:00 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:10:50 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ void	ft_infile_issue(t_pipex *pipex, char **argv)
 	exit(1);
 }
 
+void	ft_exec(t_pipex *pipex, char **envp)
+{
+	execve(pipex->command, pipex->command_args, envp);
+	perror(pipex->command);
+	ft_free_child_prog(pipex);
+	exit(1);
+}
+
 void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp, \
 	pid_t *tab_pid)
 {	
@@ -76,11 +84,8 @@ void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp, \
 										pipex->is_here_doc], ' ');
 		pipex->command = ft_get_command_for_the_pipe(pipex);
 		if (!pipex->command)
-		 	ft_command_issue(pipex);
-		execve(pipex->command, pipex->command_args, envp);
-		perror(pipex->command);
-		ft_free_child_prog(pipex);
-		exit(1);
+			ft_command_issue(pipex);
+		ft_exec(pipex, envp);
 	}
 	else
 		*tab_pid = pipex->pid;
