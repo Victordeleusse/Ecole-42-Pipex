@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:16:05 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 18:29:37 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:02:06 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ void	ft_free_parent_prog(t_pipex *pipex)
 		close(pipex->outfile);
 	if (pipex->is_here_doc == 1)
 		unlink("temporary file");
-	while (pipex->command_paths[i])
+	while (pipex->command_paths && pipex->command_paths[i])
 	{	
 		free(pipex->command_paths[i]);
 		i++;
 	}
-	free(pipex->command_paths);
+	if (pipex->command_paths)
+		free(pipex->command_paths);
 	free(pipex->pipefd);
 	free(pipex->tab_pid);
 }

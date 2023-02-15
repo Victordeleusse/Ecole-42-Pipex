@@ -21,7 +21,7 @@ LIBFT_PATH = -I Libft -L Libft -lft
 
 # CFLAGS += -fsanitize=address,undefined -g2
 # CFLAGS += -valgrind
-# CFLAGS += -g 
+CFLAGS += -g 
 
 all: ${NAME}
 
@@ -36,7 +36,7 @@ ${NAME_BONUS}: ${OBJS_BONUS}
 		$(CC) -o ${NAME_BONUS} $(CFLAGS) ${OBJS_BONUS} ${LIBFT_PATH}
 
 %.o: %.c
-			${CC} -MMD -o $@ -c $<
+			${CC} -g -MMD -o $@ -c $<
 
 clean:	
 		rm -f ${OBJS} ${DEPS} ${OBJS_BONUS} ${DEPS_BONUS}

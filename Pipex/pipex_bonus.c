@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:19:13 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 18:30:21 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:03:42 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	ft_init_pipex_bonus(t_pipex *pipex, int argc, char **argv, char **envp)
 		ft_msg_err(ERR_CALLOC);
 	pipex->env_path = ft_get_env_path(envp);
 	pipex->command_paths = ft_split(pipex->env_path, ':');
-	if (!pipex->command_paths)
-		ft_free_pipes(pipex);
 }
 
 int	main(int argc, char **argv, char **envp)

@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 18:45:16 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:14:46 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_get_command_for_the_pipe(t_pipex *pipex)
 	if (access(pipex->command_args[0], X_OK) == 0)
 		return (pipex->command_args[0]);
 	i = 0;
-	while (pipex->command_paths[i])
+	while (pipex->command_paths && pipex->command_paths[i])
 	{
 		temp = ft_strjoin(pipex->command_paths[i], "/");
 		command = ft_strjoin(temp, pipex->command_args[0]);
