@@ -6,14 +6,14 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:20:15 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 21:22:17 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 22:12:08 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "libft.h"
+# include "../../Libft/libft.h"
 
 # include <unistd.h>
 # include <sys/types.h>

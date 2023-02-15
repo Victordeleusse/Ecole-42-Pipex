@@ -1,5 +1,4 @@
 NAME = pipex
-
 NAME_BONUS = pipex_bonus
 
 CC = cc
@@ -7,24 +6,21 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRCS =	child.c free.c get_files.c pipe.c pipex.c \
 		msg.c 
-
 SRCS_BONUS =	child.c free.c get_files.c pipe.c pipex_bonus.c \
 		msg.c 
 		
-OBJS_PATH = objs
-
-OBJS_PATH_BONUS = objs_bonus
-
 SRCS_PATH = srcs/
 
+OBJS_PATH = objs
+OBJS_PATH_BONUS = objs_bonus
+
 HEADER_PATH += ${SRCS_PATH}includes/
-HEADER_PATH_LIBFT += Libft/
 
 HEADER = pipex.h
 
 vpath %.c ${SRCS_PATH}
-
-vpath %.h ${HEADER_PATH}
+vpath %.h ${HEADER_PATH} 
+# *.h -> ./srcs/includes/pipex.h
 
 all: ${NAME}
 
@@ -34,11 +30,11 @@ OBJS_BONUS = ${patsubst %.c, ${OBJS_PATH_BONUS}/%.o, ${SRCS_BONUS}}
 
 ${OBJS}: ${OBJS_PATH}/%.o: %.c Makefile ${HEADER}
 		mkdir -p ${OBJS_PATH}
-		${CC} ${CFLAGS} -g -c $< -o $@ -I ${HEADER_PATH} -I ${HEADER_PATH_LIBFT} 
+		${CC} ${CFLAGS} -g -c $< -o $@ -I ${HEADER_PATH}
 
 ${OBJS_BONUS}: ${OBJS_PATH_BONUS}/%.o: %.c Makefile ${HEADER}
 		mkdir -p ${OBJS_PATH_BONUS}
-		${CC} ${CFLAGS} -g -c $< -o $@ -I ${HEADER_PATH} -I ${HEADER_PATH_LIBFT}
+		${CC} ${CFLAGS} -g -c $< -o $@ -I ${HEADER_PATH}
 
 LIBFT_PATH = -I Libft -L Libft -lft
 
