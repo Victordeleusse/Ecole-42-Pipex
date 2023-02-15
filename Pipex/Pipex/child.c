@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 14:56:40 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:47:23 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ char	*ft_get_command_for_the_pipe(t_pipex *pipex)
 
 	if (!pipex->command_args || pipex->command_args[0] == 0)
 		return (NULL);
-	// len = ft_strlen(pipex->command_args[0]);
-	// if (pipex->command_args[0][len - 1] == '/')
-	// 	return (NULL);
 	if (access(pipex->command_args[0], X_OK) == 0)
 		return (pipex->command_args[0]);
 	i = 0;
@@ -78,8 +75,8 @@ void	ft_generate_child_process(t_pipex *pipex, char **argv, char **envp, \
 		pipex->command_args = ft_split(argv[2 + pipex->index + \
 										pipex->is_here_doc], ' ');
 		pipex->command = ft_get_command_for_the_pipe(pipex);
-		// if (!pipex->command)
-			// ft_command_issue(pipex);
+		if (!pipex->command)
+		 	ft_command_issue(pipex);
 		execve(pipex->command, pipex->command_args, envp);
 		perror(pipex->command);
 		ft_free_child_prog(pipex);
