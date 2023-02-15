@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:06:59 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/01 18:53:40 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:32:56 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	ft_close_pipes(t_pipex *pipex)
 	i = 0;
 	while (i < 2 * pipex->nb_pipes)
 	{	
-		close(pipex->pipefd[i]);
+		if (pipex->pipefd[i] >= 0)
+			close(pipex->pipefd[i]);
 		i++;
 	}
 }

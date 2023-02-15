@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:37:54 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/14 17:11:13 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:36:12 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_initialise_recep_file_from_here_doc(int *recep_file)
 
 void	ft_infile_from_here_doc(t_pipex *pipex, int *recep_file)
 {
-	close(*recep_file);
+	if (*recep_file >= 0)
+		close(*recep_file);
 	pipex->infile = open("temporary file", O_RDONLY, 0000664);
 	if (pipex->infile < 0)
 	{
@@ -75,7 +76,8 @@ void	ft_get_outfile(t_pipex *pipex, char **argv, int argc)
 			O_WRONLY | O_CREAT | O_APPEND, 0000664);
 	if (pipex->outfile < 0)
 	{	
-		close(pipex->infile);
+		if (pipex->infile >= 0)
+			close(pipex->infile);
 		if (pipex->is_here_doc == 1)
 			unlink("temporary file");
 		ft_msg_err(argv[argc -1]);
