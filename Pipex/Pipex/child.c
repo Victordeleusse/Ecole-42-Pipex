@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:41:08 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/14 16:34:53 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/15 12:42:04 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ char	*ft_get_command_for_the_pipe(t_pipex *pipex)
 	char	*temp;
 	char	*command;
 	int		i;
+	int		len;
 
 	if (!pipex->command_args || pipex->command_args[0] == 0)
 		return (NULL);
-	if (access(pipex->command_args[0], 1) == 0 && !pipex->command_args[1])
+	len = ft_strlen(pipex->command_args[0]);
+	if (pipex->command_args[0][len - 1] == '/')
+		return (NULL);
+	if (access(pipex->command_args[0], X_OK) == 0)
 		return (pipex->command_args[0]);
 	i = 0;
 	while (pipex->command_paths[i])
@@ -28,7 +32,7 @@ char	*ft_get_command_for_the_pipe(t_pipex *pipex)
 		temp = ft_strjoin(pipex->command_paths[i], "/");
 		command = ft_strjoin(temp, pipex->command_args[0]);
 		free(temp);
-		if (access(command, 1) == 0)
+		if (access(command, X_OK) == 0)
 			return (command);
 		free(command);
 		i++;
