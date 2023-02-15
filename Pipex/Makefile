@@ -1,5 +1,7 @@
 NAME = pipex
 
+NAME_BONUS = pipex_bonus
+
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
@@ -23,15 +25,17 @@ LIBFT_PATH = -I Libft -L Libft -lft
 
 all: ${NAME}
 
-${NAME}: ${OBJS}
+${NAME}: ${OBJS} 
 		$(MAKE) -C Libft/ all
-		@ $(CC) -o ${NAME} $(CFLAGS) ${OBJS} ${LIBFT_PATH} 
+		$(CC) -o ${NAME} $(CFLAGS) ${OBJS} ${LIBFT_PATH} 
 
-bonus: ${OBJS_BONUS}
+bonus: ${NAME_BONUS}
+
+${NAME_BONUS}: ${OBJS_BONUS}
 		$(MAKE) -C Libft/ all
-		@ $(CC) -o ${NAME} $(CFLAGS) ${OBJS_BONUS} ${LIBFT_PATH}
+		$(CC) -o ${NAME_BONUS} $(CFLAGS) ${OBJS_BONUS} ${LIBFT_PATH}
 
-%.o: %.c 
+%.o: %.c
 			${CC} -MMD -o $@ -c $<
 
 clean:	
@@ -41,11 +45,11 @@ clean:
 
 fclean:	clean
 		$(MAKE) -C Libft/ fclean
-		rm -f ${NAME}
+		rm -f ${NAME} ${NAME_BONUS}
 		clear
 
--include $(DEPS) $(DEPS_BONUS) 
+-include ${DEPS} ${DEPS_BONUS} 
 
 re:	fclean all
 
-.PHONY: clean fclean re bonus
+.PHONY: clean fclean re 
