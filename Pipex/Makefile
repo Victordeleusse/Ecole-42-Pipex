@@ -5,11 +5,11 @@ NAME_BONUS = pipex_bonus
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS =	Pipex/child.c Pipex/free.c Pipex/get_files.c Pipex/pipe.c Pipex/pipex.c \
-		Pipex/msg.c 
+SRCS =	child.c free.c get_files.c pipe.c pipex.c \
+		msg.c 
 
-SRCS_BONUS =	Pipex/child.c Pipex/free.c Pipex/get_files.c Pipex/pipe.c Pipex/pipex_bonus.c \
-		Pipex/msg.c 
+SRCS_BONUS =	child.c free.c get_files.c pipe.c pipex_bonus.c \
+		msg.c 
 		
 OBJS = ${SRCS:.c=.o}
 DEPS = ${SRCS:.c=.d}
