@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:18:10 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 20:03:46 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:42:15 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int	main(int argc, char **argv, char **envp)
 	}
 	ft_close_pipes(&pipex);
 	waitpid(pipex.tab_pid[argc - 4], &status, 0);
-	waitpid(-1, NULL, 0);
+	while (wait(NULL) != -1)
+		(void)status;
 	ft_free_parent_prog(&pipex);
 	if (!status)
 		return (0);

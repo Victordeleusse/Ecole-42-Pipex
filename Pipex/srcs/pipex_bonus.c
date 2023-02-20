@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:19:13 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/02/15 20:03:42 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:40:57 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	main(int argc, char **argv, char **envp)
 		waitpid(pipex.tab_pid[argc - 4], &status, 0);
 	else
 		waitpid(pipex.tab_pid[argc - 5], &status, 0);
-	waitpid(-1, NULL, 0);
+	while (wait(NULL) != -1)
+		(void)status;
 	ft_free_parent_prog(&pipex);
 	if (!status)
 		return (0);
